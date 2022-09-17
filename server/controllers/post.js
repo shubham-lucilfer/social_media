@@ -29,5 +29,5 @@ export const updatePost = async (req, res) => {
         return res.status(404).send("No post with that id")
 
     const updatedPost = await postModal.findByIdAndUpdate(_id, post, { new: true });
-    res.json(updatePost)
+    res.json(updatedPost)
 }
