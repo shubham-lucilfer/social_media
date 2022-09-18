@@ -8,7 +8,7 @@ const Posts = ({setCurrentId }) => {
   const classes = useStyle();
   const posts = useSelector((state) => state.postReducer)
   
-  console.log(posts);
+
   return (
     !posts.length ? <CircularProgress /> : (
       <Grid className={classes.container} container alignItems="stretch" spaceing={3}>
