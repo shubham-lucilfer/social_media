@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import { Container } from '@material-ui/core'
-
 import NavBar from './components/NavBar/NavBar'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home/Home'
 import Auth from './components/Auth/Auth';
-import context from './context/AuthContext';
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const App = () => {
-  const [Name, setname] = useState(null);
+
   return (
-    <context.Provider value={{ Name, setname }}>
-      <BrowserRouter>
+    <BrowserRouter>
         <Container maxidth='lg'>
           <NavBar />
           <Switch>
@@ -20,7 +19,7 @@ const App = () => {
           </Switch>
         </Container>
       </BrowserRouter>
-    </context.Provider >
+
 
 
 

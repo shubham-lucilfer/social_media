@@ -1,24 +1,29 @@
-import React from 'react'
-import { AppBar, Typography, Toolbar, Button } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
+import { AppBar, Typography, Toolbar, Button, Avatar } from '@material-ui/core'
 import useStyle from './styles'
 import memories from "../../images/memories.png"
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { useContext } from 'react'
-import context from '../../context/AuthContext'
+import { useHistory, useLocation } from 'react-router-dom'
+
 
 const NavBar = () => {
-  const { Name, setname } = useContext(context);
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyle();
-
+  const location = useLocation();
   const logout = () => {
     dispatch({ type: "LOGOUT" })
     history.push('/')
-    setname(null);
+    setUser(null)
   }
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  console.log(user)
+
+  useEffect(() => {
+    const token = user?.token
+    setUser(JSON.parse(localStorage.getItem('profile')))
+  }, [location])
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
@@ -28,10 +33,10 @@ const NavBar = () => {
       </div>
       <Toolbar>
         {
-          Name ? (
+          user ? (
             <div className={classes.profile}>
-              <Typography variant='h6'>Welcome</Typography>
-              <Typography variant='h5'>{Name}</Typography>
+              <Avatar className={classes.purple} slt={user.user.displayName} src={user.user.photoURL}></Avatar>
+              <Typography className={classes.userName} variant='h6'>{user.user.displayName}</Typography>
               <Button variant='contained' className={classes.logout} color="secondary" onClick={logout}>Log Out</Button>
             </div>
           ) : (

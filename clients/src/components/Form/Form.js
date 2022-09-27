@@ -12,7 +12,6 @@ const Form = ({ currentId, setCurrentId }) => {
     const classes = useStyle();
     const dispatch = useDispatch();
     const post = useSelector((state) => currentId ? state.postReducer.find((p) => p._id === currentId) : null);
-    console.log(post)
     const [postData, setPostData] = useState({
         creator: '',
         title: '',

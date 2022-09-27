@@ -2,7 +2,8 @@ import React from 'react'
 import Post from './Post/Post'
 import useStyle from './styles'
 import { useSelector } from 'react-redux'
-import { Grid, CircularProgress } from '@material-ui/core'
+import { Grid,Typography,Button } from '@material-ui/core'
+
 
 const Posts = ({setCurrentId }) => {
   const classes = useStyle();
@@ -10,7 +11,7 @@ const Posts = ({setCurrentId }) => {
   
 
   return (
-    !posts.length ? <CircularProgress /> : (
+    !posts.length ? <Typography variant='h5'> No Posts to Show here</Typography> : (
       <Grid className={classes.container} container alignItems="stretch" spaceing={3}>
         {posts.map((post) => (
           <Grid key={post._id} xs={12} sm={6} item>
