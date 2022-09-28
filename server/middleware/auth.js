@@ -9,12 +9,12 @@ const auth = async (req, res, next) => {
         let decodedData;
         if (token && isCustomAuth) {
             decodedData = jwt.verify(token, "CHROLLO")
-            
+
             req.userId = decodedData?.id
 
-        }else{
+        } else {
             decodedData = jwt.decode(token)
-            
+
             req.userId = decodedData?.sub;
         }
         next();

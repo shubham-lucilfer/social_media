@@ -6,10 +6,7 @@ import Input from './Input'
 import { useState } from 'react'
 import { signin, signup } from "../../actions/authAction"
 import { auth } from "../../firebase"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
-import { updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux'
-import context from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom';
 import { GoogleAuthProvider } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
@@ -26,7 +23,6 @@ const Auth = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData)
         if (isSignup) {
             dispatch(signup(formData, history))
         } else {

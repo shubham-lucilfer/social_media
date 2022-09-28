@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { AppBar, Typography, Toolbar, Button, Avatar } from '@material-ui/core'
+import { AppBar, Typography, Toolbar, Button, Avatar, Slide } from '@material-ui/core'
 import useStyle from './styles'
 import memories from "../../images/memories.png"
 import { Link } from 'react-router-dom'
@@ -12,16 +12,20 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const classes = useStyle();
   const location = useLocation();
+ 
   const logout = () => {
     dispatch({ type: "LOGOUT" })
     history.push('/')
     setUser(null)
   }
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  console.log(user)
+
+
+
+
 
   useEffect(() => {
-    const token = user?.token
+   
     setUser(JSON.parse(localStorage.getItem('profile')))
   }, [location])
 
@@ -35,9 +39,7 @@ const NavBar = () => {
         {
           user ? (
             <div className={classes.profile}>
-              <Avatar className={classes.purple} slt={user.user.displayName} src={user.user.photoURL}></Avatar>
-              <Typography className={classes.userName} variant='h6'>{user.user.displayName}</Typography>
-              <Button variant='contained' className={classes.logout} color="secondary" onClick={logout}>Log Out</Button>
+              <Button justify='flex-end' variant='contained' className={classes.logout} color="secondary" onClick={logout}>Log Out</Button>
             </div>
           ) : (
             <Button variant='contained' component={Link} to='/auth' color='primary'>Sign In</Button>

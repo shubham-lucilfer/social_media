@@ -12,7 +12,7 @@ export const getPost = async (req, res) => {
 
 export const createPost = async (req, res) => {
     const body = req.body;
-    const newPost = new postModal(body);
+    const newPost = new postModal({ ...body, creator: req.userId, createdAt: new Date().toISOString() });
     try {
         await newPost.save()
         res.status(200).json(newPost)
@@ -53,7 +53,7 @@ export const updateLike = async (req, res) => {
 
     const post = await postModal.findById(id);
     const index = post.likes.findIndex((id) => id === String(req.userId))
-    if (index === - 1) {
+    if (index === -1) {
         post.like.push(req.userId);
     } else {
         post.like = post.likes.filter((id) => id !== String(req.userId))

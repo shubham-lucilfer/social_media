@@ -8,12 +8,12 @@ import { createPost, updatePost } from '../../actions/postAction'
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 const Form = ({ currentId, setCurrentId }) => {
-
+    const user = JSON.parse(localStorage.getItem('profile'))
     const classes = useStyle();
     const dispatch = useDispatch();
     const post = useSelector((state) => currentId ? state.postReducer.find((p) => p._id === currentId) : null);
     const [postData, setPostData] = useState({
-        creator: '',
+      
         title: '',
         message: '',
         tags: '',
@@ -29,14 +29,14 @@ const Form = ({ currentId, setCurrentId }) => {
         if (currentId) {
             dispatch(updatePost(currentId, postData));
         } else
-            dispatch(createPost(postData));
+            dispatch(createPost({...postData, name:user?.name}));
 
             clear();
     }
     const clear = () => {
         setCurrentId(null)
         setPostData({
-            creator: '',
+          
             title: '',
             message: '',
             tags: '',
@@ -47,7 +47,6 @@ const Form = ({ currentId, setCurrentId }) => {
         <Paper className={classes.paper}>
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography varient='h6'>{currentId ? "Editing" : "Creating"} a Memory</Typography>
-                <TextField name='creator' variant='outlined' label='Creator' fullWidth value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })}></TextField>
                 <TextField name='creator' variant='outlined' label='Title' fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })}></TextField>
                 <TextField name='creator' variant='outlined' label='Message' fullWidth value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })}></TextField>
                 <TextField name='creator' variant='outlined' label='Tags' fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value })}></TextField>
