@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { AppBar, Typography, Toolbar, Button, Avatar } from '@material-ui/core'
+import { AppBar, Typography, Toolbar, Button } from '@material-ui/core'
 import useStyle from './styles'
 import memories from "../../images/memories.png"
 import { Link } from 'react-router-dom'
@@ -44,7 +44,7 @@ const NavBar = () => {
     <AppBar className={classes.appBar} position="static" color="inherit">
       <div className={classes.brandContainer}>
         <Typography className={classes.heading} component={Link} to="/" variant='h2' align='center'>Memories</Typography>
-        <img className={classes.image} src={memories} height='60'></img>
+        <img className={classes.image} src={memories} alt="" height='60'></img>
       </div>
       <Toolbar>
         {

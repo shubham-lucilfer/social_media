@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container } from '@material-ui/core'
 import NavBar from './components/NavBar/NavBar'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home/Home'
 import Auth from './components/Auth/Auth';
 
-import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 const App = () => {
 

@@ -2,7 +2,7 @@ import React from 'react'
 import Post from './Post/Post'
 import useStyle from './styles'
 import { useSelector } from 'react-redux'
-import { Grid,Typography,Button } from '@material-ui/core'
+import { Grid,Typography } from '@material-ui/core'
 
 
 const Posts = ({setCurrentId }) => {
