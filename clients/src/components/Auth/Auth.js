@@ -35,9 +35,7 @@ const Auth = () => {
         setShowPassword(false);
     }
 
-    const handleShowPassword = () => {
-        setShowPassword((prevShowPassword) => !prevShowPassword)
-    }
+  
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -83,7 +81,7 @@ const Auth = () => {
                             <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit} onClick={googleLogin}>Sign In With Google</Button>
                         )
                     }
-                    <Grid container justify='flex-end'>
+                    <Grid container justifyContent='flex-end'>
                         <Grid item>
                             <Button onClick={switchMode}>{isSignup ? "Already have an account Sign In" : "Dont have an account ? Sign Up"}</Button>
                         </Grid>

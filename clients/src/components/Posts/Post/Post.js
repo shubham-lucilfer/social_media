@@ -16,17 +16,17 @@ const Post = ({ post, setCurrentId }) => {
   let arr = tag.split('#');
   const ntags = arr.splice(1);
   return (
-    <Card className={classes.card} gutterBottom>
+    <Card className={classes.card} >
       <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
       <div className={classes.overlay}>
         <Typography variant='h6' >
-          {post.creator}
+          {post.name}
         </Typography>
         <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
       </div>
       <div className={classes.overlay2}>
         <Button style={{ color: 'white' }} size='small' onClick={() => setCurrentId(post._id)}>
-          <MoreHorizIcon fontSize='default' />
+          <MoreHorizIcon fontSize='medium' />
         </Button>
       </div>
       <div className={classes.details}>
@@ -34,7 +34,7 @@ const Post = ({ post, setCurrentId }) => {
           `#${tag} `
         ))}</Typography>
       </div>
-      <Typography className={classes.title} variant='h5' gutterBottom>{post.title}</Typography>
+      <Typography className={classes.title} variant='h5' >{post.title}</Typography>
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>{post.message}</Typography>
       </CardContent>

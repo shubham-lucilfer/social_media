@@ -10,11 +10,11 @@ export const signin = async (req, res) => {
         if (!existingUser)
             res.status(404).json({ message: "User doesnt exist" })
 
-            let isPasswordCorrect;
-            if(password === existingUser.password){
-                isPasswordCorrect = true;
-            }
-         
+        let isPasswordCorrect;
+        if (password === existingUser.password) {
+            isPasswordCorrect = true;
+        }
+
         if (!isPasswordCorrect)
             res.status(400).json({ message: "Invalid Credential" })
 
@@ -32,7 +32,7 @@ export const signup = async (req, res) => {
 
     try {
         const existingUser = await userModal.findOne({ email })
-       
+
         if (existingUser) {
             res.status(400).json({ message: "User already exist" })
         }

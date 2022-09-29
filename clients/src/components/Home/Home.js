@@ -11,14 +11,14 @@ import { getPosts } from '../../actions/postAction'
 const Home = () => {
     const [currentId, setCurrentId] = useState(null);
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         dispatch(getPosts())
     }, [currentId, dispatch])
     return (
         <Grow in >
             <Container>
-                <Grid container justify='space-between' alignItems='stretch' spacing={3}>
+                <Grid container justifyContent='space-between' alignItems='stretch' spacing={3}>
                     <Grid item xs={12} sm={7}>
                         <Posts setCurrentId={setCurrentId} />
                     </Grid>

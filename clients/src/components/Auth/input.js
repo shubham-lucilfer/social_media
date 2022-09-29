@@ -16,15 +16,6 @@ const Input = ({ name, handleChange, label, half, autoFocus, type, handleShowPas
                 label={label}
                 autoFocus={autoFocus}
                 type={type}
-                InputProps={name === 'password' ? {
-                    endAdornment: (
-                        <InputAdornment position='end'>
-                            <IconButton onClick={handleShowPassoword}>
-                                {type === 'password' ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                        </InputAdornment>
-                    )
-                }:null}
             ></TextField>
         </Grid>
     )
