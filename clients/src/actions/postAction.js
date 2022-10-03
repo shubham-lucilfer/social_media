@@ -50,3 +50,13 @@ export const updateLike = (id) => async (dispatch) => {
         console.log(error.message);
     }
 }
+
+
+export const getPostBySearch = (searchQuery) => async (dispatch) => {
+    try {
+        const { data: { data } } = await api.fetchPostBySearch(searchQuery);
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+}

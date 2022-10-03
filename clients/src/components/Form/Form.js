@@ -11,7 +11,7 @@ const Form = ({ currentId, setCurrentId }) => {
     const classes = useStyle();
     const dispatch = useDispatch();
     const post = useSelector((state) => currentId ? state.postReducer.find((p) => p._id === currentId) : null);
-    console.log(post)
+    
     const [postData, setPostData] = useState({
         title: '',
         message: '',
@@ -20,7 +20,7 @@ const Form = ({ currentId, setCurrentId }) => {
     })
     const user = JSON.parse(localStorage.getItem('profile'))
     const [name, setName] = useState(null);
-    console.log(user)
+
     setTimeout(() => {
         if (user) {
             if (user.token.length < 500) {
@@ -30,17 +30,22 @@ const Form = ({ currentId, setCurrentId }) => {
             }
         }
 
-    }, 1000)
-
-    console.log(name)
-
+    }, 100)
 
     useEffect(() => {
         if (post) setPostData(post)
 
     }, [post])
 
-
+    if(!name){
+        return(
+            <Paper className={classes.paper}>
+                <Typography variant='h6' align='center'>
+                    Please Sign In to create your own memory and like other memories!!
+                </Typography>
+            </Paper>
+        )
+    }    
     const handleSubmit = (e) => {
         e.preventDefault();
         if (currentId) {
@@ -58,6 +63,7 @@ const Form = ({ currentId, setCurrentId }) => {
             selectedFile: ''
         })
     }
+
     return (
         <Paper className={classes.paper}>
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
