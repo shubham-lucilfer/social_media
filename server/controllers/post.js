@@ -2,9 +2,16 @@ import postModal from "../models/postModal.js"
 import mongoose from "mongoose";
 
 export const getPost = async (req, res) => {
+    const { page } = req.query
     try {
-        const postMessages = await postModal.find();
-        return res.status(200).json(postMessages)
+        const LIMIT = 6;
+        const startIndex = (Number(page) - 1) * LIMIT; //get the starting index of every page
+        const total = await postModal.countDocuments({});
+
+        const posts = await postModal.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
+
+
+         res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) })
     } catch (error) {
         res.status(404).json({ Error: error.message })
     }

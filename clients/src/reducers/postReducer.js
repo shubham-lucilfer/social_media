@@ -1,18 +1,28 @@
-import { UPDATE, FETCH_ALL, CREATE, DELETE, UPDATE_LIKE } from '../constants/actionTypes';
+import { UPDATE, FETCH_ALL, CREATE, DELETE, UPDATE_LIKE, FETCH_BY_SEARCH } from '../constants/actionTypes';
 
-export default (posts = [], action) => {
+export default (state = [], action) => {
     switch (action.type) {
-        case UPDATE:
-            return posts.map((post) => post._id === action.payload._id ? action.payload : post);
         case FETCH_ALL:
-            return action.payload;
+            return {
+                ...state,
+                posts: action.payload.data,
+                currentPage: action.payload.currentPage,
+                numberOfPages: action.payload.numberOfPages
+            };
+        case FETCH_BY_SEARCH:
+            return {
+                ...state,
+                posts: action.payload.data
+            };
+        case UPDATE:
+            return state.map((post) => post._id === action.payload._id ? action.payload : post);
         case CREATE:
-            return [...posts, action.payload];
+            return [...state, action.payload];
         case DELETE:
-            return posts.filter((post) => post._id !== action.payload);
+            return state.filter((post) => post._id !== action.payload);
         case UPDATE_LIKE:
-            return posts.map((post) => post._id === action.payload._id ? action.payload : post);
+            return state.map((post) => post._id === action.payload._id ? action.payload : post);
         default:
-            return posts;
+            return state;
     }
-}
+} 

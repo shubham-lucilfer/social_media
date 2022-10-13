@@ -1,11 +1,12 @@
 import * as api from '../api/index.js';
-import { UPDATE, FETCH_ALL, CREATE, DELETE, UPDATE_LIKE } from '../constants/actionTypes';
+import { UPDATE, FETCH_ALL, CREATE, DELETE, UPDATE_LIKE, FETCH_BY_SEARCH } from '../constants/actionTypes';
 
 //actions creators
 
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
     try {
-        const { data } = await api.fetchPosts();
+        const { data } = await api.fetchPosts(page);
+        console.log(data);
         dispatch({ type: FETCH_ALL, payload: data })
     } catch (error) {
         console.log({ error: error.message })
@@ -55,7 +56,7 @@ export const updateLike = (id) => async (dispatch) => {
 export const getPostBySearch = (searchQuery) => async (dispatch) => {
     try {
         const { data: { data } } = await api.fetchPostBySearch(searchQuery);
-        console.log(data);
+        dispatch({ type: FETCH_BY_SEARCH, payload: data })
     } catch (error) {
         console.log(error);
     }
